@@ -22,6 +22,15 @@ describe('parse comments', () => {
       expect(String(doc)).toBe(src)
     })
 
+    test('body only comment', () => {
+      const src = source`
+        #comment
+      `
+      const doc = YAML.parseDocument(src)
+      expect(doc.contents.commentBefore).toBe('comment\n')
+      expect(String(doc)).toBe(src)
+    })
+
     test('body start comments with empty comment line', () => {
       const src = source`
         ---
